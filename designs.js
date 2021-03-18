@@ -1,24 +1,37 @@
 // Select color input
-const selectedColor = document.getElementById('colorPicker');
+let selectedColor = document.getElementById('colorPicker');
 // Select size input
-const selectedSize = document.getElementById('sizePicker');
+let selectedSize = document.getElementById('sizePicker');
 
 // When size is submitted by the user, call makeGrid()
-const submitSize = document.querySelector('input[type="submit"]');
-
-submitSize.onclick = function() {
-	return makeGrid();
-}
+selectedSize.addEventListener('submit', function() {
+	return makeGrid()
+});
 
 // A button to clear the canvas
-const clearBtn = document.querySelector('input[type="button"]');
+let clearBtn = document.querySelector('input[type="button"]');
 
-clearBtn.onclick = function() {
-  ctx.fillStyle = 'rgb(0,0,0)';
-  ctx.fillRect(0,0,width,height);
-}
+clearBtn.addEventListener('button', function() {
 
+});
+
+// Creates the grid of the canvas
 function makeGrid() {
+	let canvas = document.getElementsById('pixelCanvas');
+	let gridWidth = document.getElementsById('inputWidth');
+	let gridHeight = document.getElementsById('inputHeight');
+	let tableBody = document.createElement('tbody');
 
+	for (let x = 0; x < gridWidth; x++) {
+			let gridRow = document.createElement('tr');
 
+			for (let y = 0; y < gridHeight; y++) {
+					let gridCell = document.createElement('td');
+					gridRow.appendChild(gridCell);
+			}
+					gridCell.addEventListener('mousedown', function() {
+		        			selectedColor.appendChild(gridCell).style.backgroundColor = color;
+		      			});
+    	}
+			}
 }
