@@ -4,7 +4,8 @@ let selectedColor = document.getElementById('colorPicker');
 let selectedSize = document.getElementById('sizePicker');
 
 // When size is submitted by the user, call makeGrid()
-selectedSize.addEventListener('submit', function() {
+selectedSize.addEventListener('submit', function(event) {
+	event.preventDefault
 	return makeGrid()
 });
 
@@ -17,9 +18,9 @@ clearBtn.addEventListener('button', function() {
 
 // Creates the grid of the canvas
 function makeGrid() {
-	let canvas = document.getElementsById('pixelCanvas');
-	let gridWidth = document.getElementsById('inputWidth');
-	let gridHeight = document.getElementsById('inputHeight');
+	let canvas = document.getElementById('pixelCanvas');
+	let gridWidth = document.getElementById('inputWidth');
+	let gridHeight = document.getElementById('inputHeight');
 	let tableBody = document.createElement('tbody');
 
 	for (let x = 0; x < gridWidth; x++) {
@@ -32,6 +33,6 @@ function makeGrid() {
 					gridCell.addEventListener('mousedown', function() {
 		        			selectedColor.appendChild(gridCell).style.backgroundColor = color;
 		      			});
-    	}
-			}
+    	} 
 }
+			
