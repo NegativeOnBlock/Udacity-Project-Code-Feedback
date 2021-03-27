@@ -68,3 +68,5 @@ function makeGrid() {
 	// This will finalize/seal the preparations of the grid to be called. 
 	canvas.appendChild(tableBody);	
 }
+
+// Thank you and shout out to these helpful Udacity mentors assisting me with understanding this project: Mohammad A, Eric M, Muhammad Zeeshan A, and Ujjwal S. :)
