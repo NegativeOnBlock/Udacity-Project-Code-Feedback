@@ -9,7 +9,7 @@ const gridHeight = document.getElementById('inputHeight');
 
 // When size is submitted by the user, call makeGrid()
 selectedSize.addEventListener('submit', function(event) {
-	event.preventDefault() // not adding this caused the grid not to load
+	event.preventDefault() // not adding this caused the grid not to load when creating a new grid
 	return makeGrid()
 }); 
 
@@ -40,28 +40,30 @@ canvas.addEventListener('mouseup', function(event) {
 });
 
 // Creates the grid 
-function makeGrid() { 
+function makeGrid() {
+	canvas.innerHTML=""; // This basically avoids problematic grid duplicates when creating a new grid
+
 	// Local Scope makeGrid function element items
 	const width = gridWidth.value;
 	const height = gridHeight.value;
 	let tableBody = document.createElement('tbody');
 
 	// A use of loops to construct the grid cells 
-	for (let x = 0; x < width; x++) {
-			let gridRow = document.createElement('tr');
-			tableBody.appendChild(gridRow);
-	
-			for (let y = 0; y < height; y++) {
-					let gridCell = document.createElement('td'); 
-					gridRow.appendChild(gridCell);
-		
+	for (let y = 0; y < height; y++) {
+		let gridRow = document.createElement('tr');
 					tableBody.appendChild(gridRow);
+	
+		for (let x = 0; x < width; x++) {
+			let gridCell = document.createElement('td'); 
+			gridRow.appendChild(gridCell);
+		
+			tableBody.appendChild(gridRow);
 
-					// Allows the grid color to be applied within a grid cell through a single click
-					gridCell.addEventListener('mousedown', function(event) {
-		        			event.target.style.backgroundColor = selectedColor.value;
-		      			});
-			} 
+			// Allows the grid color to be applied within a grid cell through a single click
+			gridCell.addEventListener('mousedown', function(event) {
+		        	event.target.style.backgroundColor = selectedColor.value;
+		      	});
+		} 
    	} 
 	// This will finalize/seal the preparations of the grid to be called. 
 	canvas.appendChild(tableBody);	
